@@ -49,8 +49,12 @@ public:
     vector<char> SetRotorThree();
 
     char GetOutputLetter(char input,vector<char> R1,vector<char> R2, vector<char> R3,vector<char> letters);
-    void EncryptMessage(string message,vector<char> R1, vector<char> R2, vector<char> R3);
-
+    char GetOutputLetterTwo(char input,vector<char> R1,vector<char> R2, vector<char> R3,vector<char> letters); 
+    string EncryptMessage(string message,vector<char> R1, vector<char> R2, vector<char> R3);
+    string DecryptMessage(string message, vector<char> R1, vector<char>R2, vector<char> R3);
+    
+    int CompositionOfFunctions(int x);
+    int SecondCompositionOfFunctions(int x);
     
 };
 int IsElementInWheel(char element,vector<char> r);
@@ -69,6 +73,6 @@ int invh(int x);
 int invk(int x);
 
 int CompositionOfFunctions(int x);
-
+int SecondCompositionOfFunctions(int x);
 
 #endif /* Daisy_hpp */

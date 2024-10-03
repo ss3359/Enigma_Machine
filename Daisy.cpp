@@ -62,12 +62,21 @@ char Enigma::GetOutputLetter(char input,vector<char> R1,vector<char> R2, vector<
     char output;
     long length=letters.size();
     int position=IsElementInWheel(input, letters);
-    int OutPutPosition= CompositionOfFunctions(position)% length;
-    output=letters[OutPutPosition];
+    int OutputPosition=CompositionOfFunctions(position)%length;
+    output=letters[OutputPosition];
     
     return output;
 }
 
+char Enigma::GetOutputLetterTwo(char input,vector<char> R1,vector<char> R2, vector<char> R3,vector<char>letters){
+    char output;
+    long length=letters.size();
+    int position=IsElementInWheel(input, letters);
+    int OutputPosition=CompositionOfFunctions(position%length);
+    output=letters[OutputPosition];
+    
+    return output;
+}
 
 
 int IsElementInWheel(char element,vector<char> r){
@@ -77,51 +86,68 @@ int IsElementInWheel(char element,vector<char> r){
             return i;
         }
         
-    }
-    return 0;
-}
-
-
-void Enigma::EncryptMessage(string message,vector<char> R1, vector<char> R2, vector<char> R3){
-   
-    int i=0,j=0,k=0;
-    string Output;
-    for(char letter:message){
-        Output+=GetOutputLetter(letter, R1, R2, R3, letters);
+        }
+        return 0;
     }
     
-    cout<<"Output: \t "<<Output<<endl;
-}
+    
+    string Enigma::EncryptMessage(string message,vector<char> R1, vector<char> R2, vector<char> R3){
+        
+        string Output;
+        for(char letter:message){
+            
+            Output+=GetOutputLetter(letter, R1, R2, R3, letters);
+            
+        }
+        
+        return Output;
+    }
+    
+    string Enigma::DecryptMessage(string message, vector<char> R1, vector<char> R2, vector<char> R3){
+        
+        string Output;
+        for(char letter:message){
+            Output+=GetOutputLetterTwo(letter, R1, R2, R3, letters);
+        }
+        return Output; 
+      }
+        
 
-//Functions To Apply For Wiring
-int f(int x){
-    return (9*x+1);
-}
-int g(int x){
-    return (2*x+3);
-}
-int h(int x){
-    return (5*x-5);
-}
-int k(int x){
-    return (3*x-7);
-}
-
-//Inverse Functions To Apply For Wiring
-
-int invf(int x){
-    return (x-1)/9;
-}
-int invg(int x){
-    return (x-3)/2;
-}
-int invh(int x){
-    return (x+5)/5;
-}
-int invk(int x){
-    return (x+7)/3;
-}
-
-int CompositionOfFunctions(int x){
-    return invf(invg(invh(k(k(h(g(f(x))))))));
-}
+    //Functions To Apply For Wiring
+    int f(int x){
+        return x+3;
+    }
+    int g(int x){
+        return x+6;
+    }
+    int h(int x){
+        return x+9;
+    }
+    int k(int x){
+        return x+12;
+    }
+    
+    //Inverse Functions To Apply For Wiring
+    
+    int invf(int x){
+        return x-3;
+    }
+    int invg(int x){
+        return x-6;
+    }
+    int invh(int x){
+        return x-9;
+    }
+    int invk(int x){
+        return x-12;
+    }
+    
+    int Enigma::CompositionOfFunctions(int x){
+        return invf(invg(invh(k(k(h(g(f(x))))))));
+    }
+    int Enigma::SecondCompositionOfFunctions(int x){
+        /*int result=(invf(invg(invh(invk(invk(h(g(f(x)))))))))%length*/;
+        
+        return invf(invg(invh(invk(invk(h(g(f(x))))))));
+    }
+    

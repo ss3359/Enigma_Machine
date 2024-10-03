@@ -20,6 +20,7 @@
 using namespace std;
 
 int main(){
+    
     Enigma e;
     vector<char> R1,R2,R3;
     long length=e.letters.size();
@@ -37,19 +38,55 @@ int main(){
     cout<<"Enter Your Message: "<<endl;
     cin>>input;
     
-    e.EncryptMessage(input, R1, R2, R3);
+    string Enc=e.EncryptMessage(input, R1, R2, R3);
+    cout<<"Encrypted Message: "<<Enc<<endl;
+
+    string Dec=e.DecryptMessage(Enc, R1, R2, R3);
+    cout<<"Decrypted Message: "<<Dec<<endl;
+ 
+    
+    
+    
     
     cout<<endl;
     
     
-    
- 
-    
+  
+
     return 0;
 }
 
+
+
+/*
+ Enigma Code (Save For Later):
+ 
+
+ 
+ */
+
+
+
+
 /*
  Excess Code:
+ 
+ 
+ 
+ int x=10;
+ int m=20;
+ 
+ int y=g(f(x));
+ 
+ cout<<"y=g(f("<<x<<")))"<<"="<<y<<endl;
+ cout<<"x=f^(-1)g^(-1)(("<<y<<"))="<<invf(invg(y))<<endl;
+ 
+ cout<<endl;
+ cout<<"y=g(f("<<x<<"))%"<<m<<"="<<y%m<<endl;
+ cout<<"x=f^(-1)g^(-1)(("<<y<<"))%" <<m<<"="<<invf(invg(y))%m<<endl;
+ cout<<"x=f^(-1)g^(-1)(("<<y<<"%"<<m<<"))="<<invf(invg(y%m))<<endl;
+
+ 
  
  //Print Out The Following Rotors Just To Make Sure The Rotors Are Aligned Properly.
  cout<<"\n\n";
